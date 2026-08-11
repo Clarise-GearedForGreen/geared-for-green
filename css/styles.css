@@ -190,10 +190,20 @@ button { font-family: inherit; cursor: pointer; }
 .hero {
   position: relative;
   background: var(--canopy);
+  background-size: cover;
+  background-position: center;
   color: var(--paper);
   padding: clamp(3rem, 8vw, 5rem) 0 0;
   overflow: hidden;
 }
+.hero::before, .page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 35, 26, 0.88) 0%, rgba(16, 35, 26, 0.94) 100%);
+  z-index: 0;
+}
+.hero > .container, .hero > .marquee, .page-hero > .container { position: relative; z-index: 1; }
 .hero__grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
@@ -486,9 +496,13 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ---------- Brand sub-page hero (dark by default) ---------- */
 .page-hero {
+  position: relative;
   background: var(--canopy);
+  background-size: cover;
+  background-position: center;
   color: var(--paper);
   padding: clamp(3rem, 8vw, 5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  overflow: hidden;
 }
 .page-hero__crumb { font-family: var(--mono); font-size: 0.74rem; color: var(--paper-faint); letter-spacing: 0.04em; margin-bottom: 1.25rem; }
 .page-hero__crumb a { color: var(--lime); }
