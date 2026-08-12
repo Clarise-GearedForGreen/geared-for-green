@@ -322,13 +322,15 @@ button { font-family: inherit; cursor: pointer; }
    and fading in, one after another on an endless loop: Collect ->
    Process -> Remanufacture -> Wear -> repeat. All four share one
    12s cycle, staggered 3s apart so only one is ever visible/active.
+   Each photo is soft-masked into a vignette "spotlight" — fading to
+   transparent at the edges — so it reads as an isolated object on the
+   hero's own dark canopy background rather than a framed photo, no
+   matter what the source photo's own background looks like.
    Reduced-motion gets an explicit static fallback below, since the
    generic global override alone would leave every stage blank. */
 .zoom-sequence {
   position: relative;
   aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border: 1px solid var(--hairline-dark);
 }
 .zoom-stage {
   position: absolute;
@@ -336,22 +338,24 @@ button { font-family: inherit; cursor: pointer; }
   opacity: 0;
   animation: zoom-stage-cycle 12s ease-in-out infinite;
 }
-.zoom-stage img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.zoom-stage::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(16, 35, 26, 0) 45%, rgba(16, 35, 26, 0.88) 100%);
+.zoom-stage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-mask-image: radial-gradient(ellipse 58% 62% at center, black 50%, transparent 88%);
+  mask-image: radial-gradient(ellipse 58% 62% at center, black 50%, transparent 88%);
 }
 .zoom-stage--1 { animation-delay: 0s; }
 .zoom-stage--2 { animation-delay: 3s; }
 .zoom-stage--3 { animation-delay: 6s; }
 .zoom-stage--4 { animation-delay: 9s; }
 @keyframes zoom-stage-cycle {
-  0% { opacity: 0; transform: scale(0.82); }
+  0% { opacity: 0; transform: scale(0.8); }
   6% { opacity: 1; transform: scale(1); }
-  20% { opacity: 1; transform: scale(1.05); }
-  25% { opacity: 0; transform: scale(1.07); }
-  100% { opacity: 0; transform: scale(1.07); }
+  20% { opacity: 1; transform: scale(1.06); }
+  25% { opacity: 0; transform: scale(1.09); }
+  100% { opacity: 0; transform: scale(1.09); }
 }
 @media (prefers-reduced-motion: reduce) {
   .zoom-stage { animation: none !important; opacity: 0; transform: none; }
@@ -360,7 +364,9 @@ button { font-family: inherit; cursor: pointer; }
 
 .zoom-stage__label {
   position: absolute; left: 1.25rem; bottom: 1.25rem; z-index: 1;
-  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  background: var(--canopy-2); border: 1px solid var(--hairline-dark);
+  padding: 0.5rem 0.8rem;
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--paper); display: flex; align-items: center; gap: 0.6em;
 }
 .zoom-stage__num { color: var(--lime); }
