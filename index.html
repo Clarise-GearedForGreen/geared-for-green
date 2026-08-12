@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=8" />
+<link rel="stylesheet" href="css/styles.css?v=9" />
 </head>
 <body>
 
@@ -25,7 +25,7 @@
   </div>
 </nav>
 
-<header class="hero" style="background-image: url('images/hero-home-forest.jpg');">
+<header class="hero">
   <div class="container hero__grid">
     <div class="hero__panel">
       <span class="eyebrow">Circular economy solutions since 1985</span>
@@ -41,18 +41,61 @@
       </div>
     </div>
     <div class="hero__visual">
-      <div class="hero-tag">
-        <div>
-          <span class="hero-tag__top">Chain of Custody</span>
-        </div>
-        <div class="hero-tag__mid">
-          <span class="hero-tag__count">Verified</span>
-          <span class="hero-tag__count-label">Traceable from bottle to product</span>
-        </div>
-        <div class="hero-tag__bottom">
-          <span>Champions for GREEN</span>
-          <span>Est. 1985</span>
-        </div>
+      <div class="flow" role="img" aria-label="Diagram of the circular economy loop: Collect, Process, Remanufacture, Educate, repeating continuously">
+        <svg class="flow__svg" viewBox="0 0 320 320" aria-hidden="true">
+          <circle class="flow-track" cx="160" cy="160" r="100" />
+          <circle class="flow-comet" cx="160" cy="160" r="100" transform="rotate(-90 160 160)" />
+
+          <!-- 01 Collect (top) -->
+          <g class="flow-node flow-node--collect">
+            <circle class="flow-node__glow" cx="160" cy="60" r="33" />
+            <circle class="flow-node__ring" cx="160" cy="60" r="27" />
+            <g class="flow-icon" transform="translate(149,49)">
+              <path d="M11 3 V13" />
+              <path d="M6 9 L11 14 L16 9" />
+              <path d="M4 17 V20 H18 V17" />
+            </g>
+            <text class="flow-label" x="160" y="20"><tspan class="flow-label__num">01 &middot; </tspan>Collect</text>
+          </g>
+
+          <!-- 02 Process (right) -->
+          <g class="flow-node flow-node--process">
+            <circle class="flow-node__glow" cx="260" cy="160" r="33" />
+            <circle class="flow-node__ring" cx="260" cy="160" r="27" />
+            <g class="flow-icon" transform="translate(249,149)">
+              <path d="M5 9 A7 7 0 0 1 17 5" />
+              <path d="M14 3 L17 5 L15 8" />
+              <path d="M19 15 A7 7 0 0 1 7 19" />
+              <path d="M10 21 L7 19 L9 16" />
+            </g>
+            <text class="flow-label" x="260" y="205"><tspan class="flow-label__num">02 &middot; </tspan>Process</text>
+          </g>
+
+          <!-- 03 Remanufacture (bottom) -->
+          <g class="flow-node flow-node--remake">
+            <circle class="flow-node__glow" cx="160" cy="260" r="33" />
+            <circle class="flow-node__ring" cx="160" cy="260" r="27" />
+            <g class="flow-icon" transform="translate(149,249) rotate(45 11 11)">
+              <rect x="6" y="6" width="12" height="12" rx="2" />
+              <circle cx="9" cy="9" r="1.2" fill="var(--paper)" stroke="none" />
+            </g>
+            <text class="flow-label" x="160" y="303"><tspan class="flow-label__num">03 &middot; </tspan>Remanufacture</text>
+          </g>
+
+          <!-- 04 Educate (left) -->
+          <g class="flow-node flow-node--educate">
+            <circle class="flow-node__glow" cx="60" cy="160" r="33" />
+            <circle class="flow-node__ring" cx="60" cy="160" r="27" />
+            <g class="flow-icon" transform="translate(49,149)">
+              <path d="M11 7 C9 5.5 6 5.5 4 6.5 V17 C6 16 9 16 11 17.5 Z" />
+              <path d="M11 7 C13 5.5 16 5.5 18 6.5 V17 C16 16 13 16 11 17.5 Z" />
+            </g>
+            <text class="flow-label" x="24" y="164" style="text-anchor: end;"><tspan class="flow-label__num">04 &middot; </tspan>Educate</text>
+          </g>
+
+          <text class="flow-label" x="160" y="164" style="font-size: 9px; letter-spacing: 0.08em; opacity: 0.55;">CLOSED LOOP</text>
+        </svg>
+        <span class="flow-badge">Circular economy &middot; looping</span>
       </div>
     </div>
   </div>
