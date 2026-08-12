@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=11" />
+<link rel="stylesheet" href="css/styles.css?v=12" />
 </head>
 <body>
 
@@ -25,42 +25,19 @@
   </div>
 </nav>
 
-<header class="hero">
-  <div class="container hero__grid">
-    <div class="hero__panel">
-      <span class="eyebrow">Circular economy solutions since 1985</span>
-      <h1>Every bottle gets a number. Every number tells you where it&rsquo;s been.</h1>
-      <p class="hero__lede">Champions for GREEN runs one proven process — collect, verify, recycle, remake, deploy — across three brands, so events, teams, and campuses can turn waste into something worth keeping.</p>
-      <div class="hero__actions">
-        <a href="#process" class="btn btn--solid">See the chain of custody</a>
-        <a href="#brands" class="btn btn--ghost-dark">Meet the family of brands</a>
-      </div>
-      <div class="hero__chips">
-        <span class="chip">Chain of custody &middot; active</span>
-        <span class="chip">Material &middot; verified</span>
-      </div>
+<header class="hero" style="background-image: url('images/hero-home-forest.jpg');">
+  <div class="container hero__content">
+    <span class="eyebrow">Circular economy solutions since 1985</span>
+    <h1>Every bottle gets a number. Every number tells you where it&rsquo;s been.</h1>
+    <p class="hero__lede">Champions for GREEN runs one proven process — collect, verify, recycle, remake, deploy — across three brands, so events, teams, and campuses can turn waste into something worth keeping.</p>
+    <div class="hero__actions">
+      <a href="mailto:mainedm@gearedforgreen.com" class="btn-cta">Start the conversation <span class="btn-cta__icon">&rarr;</span></a>
     </div>
-    <div class="hero__visual">
-      <div class="zoom-sequence" role="img" aria-label="Sequence showing the circular economy in motion: plastic bottles collected, processed into recycled material, remanufactured into sustainable clothing, and worn">
-        <div class="zoom-stage zoom-stage--1">
-          <img src="images/flow-collect-v2.jpg" alt="" loading="lazy" />
-          <span class="zoom-stage__label"><span class="zoom-stage__num">01</span> Collect</span>
-        </div>
-        <div class="zoom-stage zoom-stage--2">
-          <img src="images/flow-process-v2.jpg" alt="" loading="lazy" />
-          <span class="zoom-stage__label"><span class="zoom-stage__num">02</span> Process</span>
-        </div>
-        <div class="zoom-stage zoom-stage--3">
-          <img src="images/hero-apparel-textile.jpg" alt="" loading="lazy" />
-          <span class="zoom-stage__label"><span class="zoom-stage__num">03</span> Remanufacture</span>
-        </div>
-        <div class="zoom-stage zoom-stage--4">
-          <img src="images/apparel-golf-fullbody.jpg" alt="" loading="lazy" />
-          <span class="zoom-stage__label"><span class="zoom-stage__num">04</span> Wear</span>
-        </div>
-        <span class="flow-badge">Circular economy &middot; looping</span>
-      </div>
-    </div>
+  </div>
+  <div class="hero__pins" aria-hidden="true">
+    <div class="pin pin--1"><span class="pin__dot">12</span><span class="pin__label">Bottles per garment, verified</span></div>
+    <div class="pin pin--2"><span class="pin__dot">&check;</span><span class="pin__label">Chain of Custody &middot; Active</span></div>
+    <div class="pin pin--3"><span class="pin__dot">&#9679;</span><span class="pin__label">Est. 1985</span></div>
   </div>
   <div class="marquee">
     <div class="marquee__track">
@@ -93,9 +70,30 @@
       <h2>The Chain of Custody</h2>
       <p>One process, tracked end to end, applied across all three brands. Nothing gets lost between collection and the finished product in someone&rsquo;s hands.</p>
     </div>
-    <div class="photo-frame" style="margin-bottom: 3rem;">
-      <img src="images/apparel-quarterzip-triptych.jpg" alt="Three views of a man wearing a Champions for GREEN quilted quarter-zip jacket, the finished product of the process" width="1600" height="900" loading="lazy" />
-      <span class="photo-frame__tag">Remake &middot; Deploy</span>
+    <div class="chain-visual">
+      <div class="zoom-sequence" role="img" aria-label="Sequence showing the circular economy in motion: plastic bottles collected, processed into recycled material, remanufactured into sustainable clothing, and worn">
+        <div class="zoom-stage zoom-stage--1">
+          <img src="images/flow-collect-v2.jpg" alt="" loading="lazy" />
+          <span class="zoom-stage__label"><span class="zoom-stage__num">01</span> Collect</span>
+        </div>
+        <div class="zoom-stage zoom-stage--2">
+          <img src="images/flow-process-v2.jpg" alt="" loading="lazy" />
+          <span class="zoom-stage__label"><span class="zoom-stage__num">02</span> Process</span>
+        </div>
+        <div class="zoom-stage zoom-stage--3">
+          <img src="images/hero-apparel-textile.jpg" alt="" loading="lazy" />
+          <span class="zoom-stage__label"><span class="zoom-stage__num">03</span> Remanufacture</span>
+        </div>
+        <div class="zoom-stage zoom-stage--4">
+          <img src="images/apparel-golf-fullbody.jpg" alt="" loading="lazy" />
+          <span class="zoom-stage__label"><span class="zoom-stage__num">04</span> Wear</span>
+        </div>
+        <span class="flow-badge">Circular economy &middot; looping</span>
+      </div>
+      <div class="photo-frame">
+        <img src="images/apparel-quarterzip-triptych.jpg" alt="Three views of a man wearing a Champions for GREEN quilted quarter-zip jacket, the finished product of the process" width="1600" height="900" loading="lazy" />
+        <span class="photo-frame__tag">Remake &middot; Deploy</span>
+      </div>
     </div>
     <div class="chain">
       <div class="chain__row">
@@ -210,29 +208,35 @@
     <div class="grid-3">
       <a href="events.html" class="brand-card brand-card--events">
         <div class="brand-card__media"><img src="images/events-pickleball-triptych.jpg" alt="Athletes in Champions for GREEN apparel on an outdoor court, with a close-up of the recycled-bottle hem tag" width="1600" height="900" loading="lazy" /></div>
+        <div class="brand-card__top">
+          <span class="brand-card__kicker">[Events &amp; venues]</span>
+          <span class="brand-card__arrow">&rarr;</span>
+        </div>
         <div class="brand-card__body">
-          <span class="brand-card__kicker">Events &amp; venues</span>
           <h3>Champions for GREEN Events</h3>
           <p>Turn your event or venue into a closed loop &mdash; we collect on-site, recycle the material, and hand attendees something they&rsquo;ll actually keep.</p>
-          <span class="brand-card__link">Explore Events <span class="arrow">&rarr;</span></span>
         </div>
       </a>
       <a href="apparel.html" class="brand-card brand-card--apparel">
         <div class="brand-card__media"><img src="images/brand-apparel-tag-detail.jpg" alt="Close-up of a Champions for GREEN hem tag showing the recycled bottle count" width="900" height="1599" loading="lazy" /></div>
+        <div class="brand-card__top">
+          <span class="brand-card__kicker">[Teams &amp; corporate]</span>
+          <span class="brand-card__arrow">&rarr;</span>
+        </div>
         <div class="brand-card__body">
-          <span class="brand-card__kicker">Teams &amp; corporate</span>
           <h3>Champions for GREEN Apparel</h3>
           <p>Custom sustainable uniforms and team gear, spun from recycled bottles and built for performance, not just optics.</p>
-          <span class="brand-card__link">Explore Apparel <span class="arrow">&rarr;</span></span>
         </div>
       </a>
       <a href="campus.html" class="brand-card brand-card--campus">
         <div class="brand-card__media"><img src="images/campus-community-walk.jpg" alt="Person in Champions for GREEN apparel walking through a green community pathway" width="1600" height="900" loading="lazy" /></div>
+        <div class="brand-card__top">
+          <span class="brand-card__kicker">[Schools &amp; communities]</span>
+          <span class="brand-card__arrow">&rarr;</span>
+        </div>
         <div class="brand-card__body">
-          <span class="brand-card__kicker">Schools &amp; communities</span>
           <h3>Campus &amp; Community for GREEN</h3>
           <p>Bring circular economy infrastructure and education to your campus or community &mdash; recycling that teaches, not just collects.</p>
-          <span class="brand-card__link">Explore Campus &amp; Community <span class="arrow">&rarr;</span></span>
         </div>
       </a>
     </div>
