@@ -200,10 +200,21 @@ button { font-family: inherit; cursor: pointer; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(16, 35, 26, 0.88) 0%, rgba(16, 35, 26, 0.94) 100%);
+  background: linear-gradient(180deg, rgba(16, 35, 26, 0.16) 0%, rgba(16, 35, 26, 0.34) 100%);
   z-index: 0;
 }
 .hero > .container, .hero > .marquee, .page-hero > .container { position: relative; z-index: 1; }
+
+/* Solid text panel that floats on the vivid photo — guarantees the same
+   verified contrast as a plain --canopy background, instead of dimming
+   the whole photo to make text legible. */
+.hero__panel, .page-hero__panel {
+  background: var(--canopy);
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  max-width: 620px;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.5);
+}
+.hero__panel { max-width: 100%; }
 .hero__grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
@@ -459,7 +470,7 @@ button { font-family: inherit; cursor: pointer; }
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 .brand-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -24px rgba(16, 35, 26, 0.35); }
-.brand-card__media { aspect-ratio: 16 / 10; overflow: hidden; }
+.brand-card__media { aspect-ratio: 4 / 3; overflow: hidden; }
 .brand-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s var(--ease); }
 .brand-card:hover .brand-card__media img { transform: scale(1.05); }
 .brand-card__body { padding: 1.8rem 2rem 2.2rem; display: flex; flex-direction: column; flex-grow: 1; }
