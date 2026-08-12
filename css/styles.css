@@ -413,9 +413,9 @@ button { font-family: inherit; cursor: pointer; }
   align-items: baseline;
 }
 .section--dark .numlist__row { border-bottom-color: var(--hairline-dark); }
-.numlist__index { font-family: var(--mono); font-size: 0.85rem; color: var(--lime-ink); }
-.section--dark .numlist__index { color: var(--lime); }
-.numlist__row h3 { font-size: 1.15rem; font-weight: 600; font-family: var(--display); }
+.numlist__index { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-soft); }
+.section--dark .numlist__index { color: var(--paper-soft); }
+.numlist__row h3 { font-size: 1rem; font-weight: 600; font-family: var(--display); }
 .numlist__row p { font-size: 0.92rem; color: var(--ink-soft); }
 .section--dark .numlist__row p { color: var(--paper-soft); }
 @media (max-width: 700px) {
