@@ -317,37 +317,53 @@ button { font-family: inherit; cursor: pointer; }
 .tag--placeholder .tag__plus { font-family: var(--mono); font-size: 1.4rem; color: var(--brass-ink); }
 .tag--placeholder .tag__label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; }
 
-/* ---------- Circular economy flow diagram (hero visual) ----------
-   Animated in place of a video: a comet of light travels the ring
-   once every 8s, lighting each stage as it arrives — Collect (top) ->
-   Process (right) -> Remanufacture (bottom) -> Educate (left) -> loop.
-   Respects prefers-reduced-motion via the global override above,
-   which freezes every animation on its first frame. */
-.flow { position: relative; aspect-ratio: 1 / 1; }
-.flow__svg { width: 100%; height: 100%; overflow: visible; }
-.flow-track { fill: none; stroke: var(--hairline-dark); stroke-width: 1.5; stroke-dasharray: 2 7; }
-.flow-comet {
-  fill: none;
-  stroke: var(--lime);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-dasharray: 88 540.3;
-  filter: drop-shadow(0 0 8px rgba(196, 241, 126, 0.65));
-  animation: flow-rotate 8s linear infinite;
+/* ---------- Sequential zoom photo stack (hero visual) ----------
+   Four real photos, each zooming in from small/distant to full-size
+   and fading in, one after another on an endless loop: Collect ->
+   Process -> Remanufacture -> Wear -> repeat. All four share one
+   12s cycle, staggered 3s apart so only one is ever visible/active.
+   Reduced-motion gets an explicit static fallback below, since the
+   generic global override alone would leave every stage blank. */
+.zoom-sequence {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--hairline-dark);
 }
-@keyframes flow-rotate { to { stroke-dashoffset: -628.3; } }
+.zoom-stage {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: zoom-stage-cycle 12s ease-in-out infinite;
+}
+.zoom-stage img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.zoom-stage::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(16, 35, 26, 0) 45%, rgba(16, 35, 26, 0.88) 100%);
+}
+.zoom-stage--1 { animation-delay: 0s; }
+.zoom-stage--2 { animation-delay: 3s; }
+.zoom-stage--3 { animation-delay: 6s; }
+.zoom-stage--4 { animation-delay: 9s; }
+@keyframes zoom-stage-cycle {
+  0% { opacity: 0; transform: scale(0.82); }
+  6% { opacity: 1; transform: scale(1); }
+  20% { opacity: 1; transform: scale(1.05); }
+  25% { opacity: 0; transform: scale(1.07); }
+  100% { opacity: 0; transform: scale(1.07); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zoom-stage { animation: none !important; opacity: 0; transform: none; }
+  .zoom-stage--1 { opacity: 1; }
+}
 
-.flow-node__ring { fill: var(--canopy-2); stroke: var(--hairline-dark); stroke-width: 1; }
-.flow-node__glow { fill: none; stroke: var(--lime); stroke-width: 2; opacity: 0; animation: flow-pulse 8s ease-out infinite; }
-.flow-node--collect .flow-node__glow { animation-delay: 0s; }
-.flow-node--process .flow-node__glow { animation-delay: 2s; }
-.flow-node--remake .flow-node__glow { animation-delay: 4s; }
-.flow-node--educate .flow-node__glow { animation-delay: 6s; }
-@keyframes flow-pulse { 0% { opacity: 1; } 18% { opacity: 0; } 100% { opacity: 0; } }
-
-.flow-icon { stroke: var(--paper); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.flow-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.06em; text-transform: uppercase; fill: var(--paper-soft); text-anchor: middle; }
-.flow-label__num { fill: var(--lime); }
+.zoom-stage__label {
+  position: absolute; left: 1.25rem; bottom: 1.25rem; z-index: 1;
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--paper); display: flex; align-items: center; gap: 0.6em;
+}
+.zoom-stage__num { color: var(--lime); }
 
 .flow-badge {
   position: absolute; bottom: -0.75rem; left: 50%; transform: translateX(-50%);
@@ -355,6 +371,7 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase;
   padding: 0.5rem 0.9rem; white-space: nowrap;
   display: inline-flex; align-items: center; gap: 0.5em;
+  z-index: 1;
 }
 .flow-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); flex-shrink: 0; }
 
