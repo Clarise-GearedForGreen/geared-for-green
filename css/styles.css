@@ -267,13 +267,18 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.03em; text-transform: uppercase;
   color: var(--paper); line-height: 1.35; max-width: 15ch;
 }
-.pin--1 { top: 20%; left: 6%; }
-.pin--2 { top: 42%; right: 8%; }
-.pin--3 { bottom: 14%; left: 12%; }
-@media (max-width: 760px) {
-  .pin--1 { top: 14%; left: 4%; }
-  .pin--2 { top: 30%; right: 4%; }
-  .pin--3 { display: none; }
+/* All three pins sit in the right-hand third of the hero, clear of the
+   text column on the left (hero__content is capped at 780px) — the
+   headline can run to 4+ lines and nearly fill the hero's height, so
+   pins can't safely float over the left/center at any vertical %. */
+.pin--1 { top: 10%; right: 7%; }
+.pin--2 { top: 40%; right: 9%; }
+.pin--3 { bottom: 8%; right: 7%; }
+@media (max-width: 860px) {
+  /* Single-column layout: text spans full width, so only the strip
+     above the eyebrow is reliably clear. */
+  .pin--1 { top: 3%; right: 6%; }
+  .pin--2, .pin--3 { display: none; }
   .pin__label { max-width: 11ch; font-size: 0.6rem; }
 }
 
