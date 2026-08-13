@@ -381,6 +381,25 @@ button { font-family: inherit; cursor: pointer; }
   .carousel-card--1 { opacity: 1; }
 }
 
+/* Plain text label per card, no background/border chip — fades with
+   its image since it's a child of the same .carousel-card. */
+.carousel-card__label {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+.carousel-card__num { color: var(--lime); }
 
 /* ---------- Mission strip (light, quiet) ---------- */
 .mission {
