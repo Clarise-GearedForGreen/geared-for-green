@@ -330,20 +330,16 @@ button { font-family: inherit; cursor: pointer; }
 .tag--placeholder .tag__plus { font-family: var(--mono); font-size: 1.4rem; color: var(--brass-ink); }
 .tag--placeholder .tag__label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; }
 
-/* ---------- 3D counter-clockwise product carousel (hero visual) ----------
+/* ---------- Product carousel (hero visual) ----------
    Four real product cutouts — bottle, recycled pellets, remade polo,
-   tracking app — sweep in from the upper right, arcing counter-
-   clockwise over the top and down into center as they scale up out of
-   the deep background, then continue that same counter-clockwise arc
-   past the camera toward the lower left and fade before the next one
-   launches. One continuous 9.6s cycle, staggered 2.4s apart (via
+   tracking app — simply crossfade in place, no motion, no panel/box
+   behind them: the stage has no background or border of its own, so
+   the images read as floating directly on the hero's own canopy
+   background. One continuous 9.6s cycle, staggered 2.4s apart (via
    negative animation-delay, so the sequence is already mid-flow on
-   load) so only one card is ever in full focus at a time.
-   `.product-carousel__stage` carries the overflow:hidden + perspective
-   so flying cards stay clipped to the frame; the "looping" badge lives
-   one level up, outside that clip, so its -0.75rem overhang isn't cut.
+   load) so only one card is ever visible at a time.
    Reduced-motion gets a static single-card fallback, since the generic
-   global override alone would leave every card blank mid-flight. */
+   global override alone would leave every card blank mid-fade. */
 .product-carousel {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -351,22 +347,7 @@ button { font-family: inherit; cursor: pointer; }
 .product-carousel__stage {
   position: absolute;
   inset: 0;
-  background: var(--canopy);
   overflow: hidden;
-  perspective: 1400px;
-}
-.product-carousel__stage::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 58%, rgba(196, 241, 126, 0.16) 0%, transparent 70%);
-  pointer-events: none;
-}
-.product-carousel__stage::after {
-  content: "";
-  position: absolute; left: 8%; right: 8%; bottom: 14%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--hairline-dark) 20%, var(--hairline-dark) 80%, transparent);
-  pointer-events: none;
 }
 .carousel-card {
   position: absolute;
@@ -375,8 +356,8 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   justify-content: center;
   opacity: 0;
-  animation: carousel-fly 9.6s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
-  will-change: transform, opacity;
+  animation: carousel-fade 9.6s ease-in-out infinite;
+  will-change: opacity;
 }
 .carousel-card img {
   max-height: 60%;
@@ -389,29 +370,16 @@ button { font-family: inherit; cursor: pointer; }
 .carousel-card--2 { animation-delay: -2.4s; }
 .carousel-card--3 { animation-delay: -4.8s; }
 .carousel-card--4 { animation-delay: -7.2s; }
-@keyframes carousel-fly {
-  0% { opacity: 0; transform: translate3d(20%, -12%, -900px) rotate(-22deg) scale(0.32); }
-  10% { opacity: 1; }
-  20% { transform: translate3d(4%, -18%, -260px) rotate(-9deg) scale(0.68); }
-  28% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-  40% { opacity: 0; transform: translate3d(-16%, 12%, 420px) rotate(13deg) scale(1.45); }
-  100% { opacity: 0; transform: translate3d(-16%, 12%, 420px) rotate(13deg) scale(1.45); }
+@keyframes carousel-fade {
+  0%, 100% { opacity: 0; }
+  8% { opacity: 1; }
+  22% { opacity: 1; }
+  32% { opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .carousel-card { animation: none !important; opacity: 0; }
   .carousel-card--1 { opacity: 1; }
 }
-
-
-.flow-badge {
-  position: absolute; bottom: -0.75rem; left: 50%; transform: translateX(-50%);
-  background: var(--bone); color: var(--canopy);
-  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 0.5rem 0.9rem; white-space: nowrap;
-  display: inline-flex; align-items: center; gap: 0.5em;
-  z-index: 1;
-}
-.flow-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); flex-shrink: 0; }
 
 
 /* ---------- Mission strip (light, quiet) ---------- */
