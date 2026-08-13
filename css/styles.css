@@ -288,11 +288,10 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ---------- Marquee ticker (motion signature) ---------- */
 .marquee {
-  /* .hero is display:flex to bottom-anchor .hero__content; without this,
-     the marquee becomes a second flex item sitting beside the text
-     instead of a full-width strip at the hero's bottom edge. */
-  position: absolute;
-  left: 0; right: 0; bottom: 0; z-index: 1;
+  /* Sits as its own full-width band between the hero photo and the
+     next section (not layered inside/over the hero image). */
+  position: relative;
+  z-index: 1;
   border-top: 1px solid var(--hairline-dark);
   overflow: hidden;
   white-space: nowrap;
