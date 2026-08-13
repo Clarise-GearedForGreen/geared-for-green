@@ -210,12 +210,12 @@ button { font-family: inherit; cursor: pointer; }
    scattered over the carousel panel instead. */
 .hero {
   position: relative;
-  min-height: 60vh;
+  min-height: 65vh;
   display: flex;
   align-items: center;
   background: var(--canopy);
   color: var(--paper);
-  padding: clamp(3.5rem, 6vw, 4.5rem) 0 clamp(1.75rem, 3vw, 2.5rem);
+  padding: clamp(1.75rem, 3vw, 2.5rem) 0 clamp(1rem, 1.5vw, 1.25rem);
   overflow: hidden;
 }
 .hero::before {
@@ -342,7 +342,7 @@ button { font-family: inherit; cursor: pointer; }
    global override alone would leave every card blank mid-fade. */
 .product-carousel {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
 }
 .product-carousel__stage {
   position: absolute;
