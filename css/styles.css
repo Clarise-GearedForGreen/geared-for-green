@@ -256,41 +256,9 @@ button { font-family: inherit; cursor: pointer; }
 }
 .hero__actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
 
-/* Visual panel: the product carousel, plus the same floating data-pin
-   badges now scattered over it instead of over a photo. */
+/* Visual panel: the product carousel. */
 .hero__visual { position: relative; width: 100%; max-width: 560px; margin-inline-start: auto; }
 @media (max-width: 960px) { .hero__visual { margin-inline: auto; } }
-.hero__pins { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.pin {
-  position: absolute;
-  display: flex; align-items: center; gap: 0.65rem;
-  pointer-events: auto;
-}
-.pin__dot {
-  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
-  background: var(--lime); color: var(--canopy);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--mono); font-size: 0.65rem; font-weight: 600;
-  box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.5);
-}
-.pin__label {
-  background: rgba(16, 35, 26, 0.72);
-  backdrop-filter: blur(6px);
-  padding: 0.5rem 0.7rem;
-  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.03em; text-transform: uppercase;
-  color: var(--paper); line-height: 1.35; max-width: 15ch;
-}
-/* All three pins are positioned relative to .hero__visual (the carousel
-   panel), not the full hero, so they can't collide with the text column
-   regardless of position — kept right-anchored, clear of the centered
-   flying product, which caps at 56% width. */
-.pin--1 { top: 10%; right: 7%; }
-.pin--2 { top: 40%; right: 9%; }
-.pin--3 { bottom: 14%; right: 7%; }
-@media (max-width: 640px) {
-  .pin--2, .pin--3 { display: none; }
-  .pin__label { max-width: 11ch; font-size: 0.6rem; }
-}
 
 /* ---------- Marquee ticker (motion signature) ---------- */
 .marquee {
@@ -362,14 +330,15 @@ button { font-family: inherit; cursor: pointer; }
 .tag--placeholder .tag__plus { font-family: var(--mono); font-size: 1.4rem; color: var(--brass-ink); }
 .tag--placeholder .tag__label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; }
 
-/* ---------- 3D forward-motion product carousel (hero visual) ----------
+/* ---------- 3D counter-clockwise product carousel (hero visual) ----------
    Four real product cutouts — bottle, recycled pellets, remade polo,
-   tracking app — fly from the deep background straight toward the
-   viewer, rotating and scaling up as they close in, then pass the
-   camera and fade before the next one launches. One continuous 9.6s
-   cycle, staggered 2.4s apart (via negative animation-delay, so the
-   sequence is already mid-flow on load) so only one card is ever in
-   full focus at a time.
+   tracking app — sweep in from the upper right, arcing counter-
+   clockwise over the top and down into center as they scale up out of
+   the deep background, then continue that same counter-clockwise arc
+   past the camera toward the lower left and fade before the next one
+   launches. One continuous 9.6s cycle, staggered 2.4s apart (via
+   negative animation-delay, so the sequence is already mid-flow on
+   load) so only one card is ever in full focus at a time.
    `.product-carousel__stage` carries the overflow:hidden + perspective
    so flying cards stay clipped to the frame; the "looping" badge lives
    one level up, outside that clip, so its -0.75rem overhang isn't cut.
@@ -421,25 +390,17 @@ button { font-family: inherit; cursor: pointer; }
 .carousel-card--3 { animation-delay: -4.8s; }
 .carousel-card--4 { animation-delay: -7.2s; }
 @keyframes carousel-fly {
-  0% { opacity: 0; transform: translateZ(-900px) translateY(4%) rotateY(28deg) rotateX(6deg) scale(0.35); }
+  0% { opacity: 0; transform: translate3d(20%, -12%, -900px) rotate(-22deg) scale(0.32); }
   10% { opacity: 1; }
-  22%, 28% { opacity: 1; transform: translateZ(0) translateY(0) rotateY(0deg) rotateX(0deg) scale(1); }
-  40% { opacity: 0; transform: translateZ(420px) translateY(-6%) rotateY(-18deg) scale(1.45); }
-  100% { opacity: 0; transform: translateZ(420px) translateY(-6%) rotateY(-18deg) scale(1.45); }
+  20% { transform: translate3d(4%, -18%, -260px) rotate(-9deg) scale(0.68); }
+  28% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  40% { opacity: 0; transform: translate3d(-16%, 12%, 420px) rotate(13deg) scale(1.45); }
+  100% { opacity: 0; transform: translate3d(-16%, 12%, 420px) rotate(13deg) scale(1.45); }
 }
 @media (prefers-reduced-motion: reduce) {
   .carousel-card { animation: none !important; opacity: 0; }
   .carousel-card--1 { opacity: 1; }
 }
-
-.carousel-card__label {
-  position: absolute; left: 1.25rem; bottom: 1.25rem; z-index: 1;
-  background: var(--canopy-2); border: 1px solid var(--hairline-dark);
-  padding: 0.5rem 0.8rem;
-  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--paper); display: flex; align-items: center; gap: 0.6em;
-}
-.carousel-card__num { color: var(--lime); }
 
 
 .flow-badge {
