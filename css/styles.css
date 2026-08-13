@@ -210,12 +210,12 @@ button { font-family: inherit; cursor: pointer; }
    scattered over the carousel panel instead. */
 .hero {
   position: relative;
-  min-height: 78vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   background: var(--canopy);
   color: var(--paper);
-  padding: clamp(6.5rem, 12vw, 9rem) 0 clamp(3rem, 6vw, 5rem);
+  padding: clamp(3.5rem, 6vw, 4.5rem) 0 clamp(1.75rem, 3vw, 2.5rem);
   overflow: hidden;
 }
 .hero::before {
