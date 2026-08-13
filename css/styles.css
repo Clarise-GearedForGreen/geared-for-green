@@ -356,62 +356,87 @@ button { font-family: inherit; cursor: pointer; }
 .tag--placeholder .tag__plus { font-family: var(--mono); font-size: 1.4rem; color: var(--brass-ink); }
 .tag--placeholder .tag__label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; }
 
-/* ---------- Sequential zoom photo stack (hero visual) ----------
-   Four real photos, each zooming in from small/distant to full-size
-   and fading in, one after another on an endless loop: Collect ->
-   Process -> Remanufacture -> Wear -> repeat. All four share one
-   12s cycle, staggered 3s apart so only one is ever visible/active.
-   Each photo is soft-masked into a vignette "spotlight" — fading to
-   transparent at the edges — so it reads as an isolated object on the
-   hero's own dark canopy background rather than a framed photo, no
-   matter what the source photo's own background looks like.
-   Reduced-motion gets an explicit static fallback below, since the
-   generic global override alone would leave every stage blank. */
-.zoom-sequence {
+/* ---------- 3D forward-motion product carousel (hero visual) ----------
+   Four real product cutouts — bottle, recycled pellets, remade polo,
+   tracking app — fly from the deep background straight toward the
+   viewer, rotating and scaling up as they close in, then pass the
+   camera and fade before the next one launches. One continuous 9.6s
+   cycle, staggered 2.4s apart (via negative animation-delay, so the
+   sequence is already mid-flow on load) so only one card is ever in
+   full focus at a time.
+   `.product-carousel__stage` carries the overflow:hidden + perspective
+   so flying cards stay clipped to the frame; the "looping" badge lives
+   one level up, outside that clip, so its -0.75rem overhang isn't cut.
+   Reduced-motion gets a static single-card fallback, since the generic
+   global override alone would leave every card blank mid-flight. */
+.product-carousel {
   position: relative;
   aspect-ratio: 4 / 5;
 }
-.zoom-stage {
+.product-carousel__stage {
   position: absolute;
   inset: 0;
+  background: var(--canopy);
+  overflow: hidden;
+  perspective: 1400px;
+}
+.product-carousel__stage::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 58%, rgba(196, 241, 126, 0.16) 0%, transparent 70%);
+  pointer-events: none;
+}
+.product-carousel__stage::after {
+  content: "";
+  position: absolute; left: 8%; right: 8%; bottom: 14%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hairline-dark) 20%, var(--hairline-dark) 80%, transparent);
+  pointer-events: none;
+}
+.carousel-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
-  animation: zoom-stage-cycle 12s ease-in-out infinite;
+  animation: carousel-fly 9.6s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+  will-change: transform, opacity;
 }
-.zoom-stage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  -webkit-mask-image: radial-gradient(ellipse 58% 62% at center, black 50%, transparent 88%);
-  mask-image: radial-gradient(ellipse 58% 62% at center, black 50%, transparent 88%);
+.carousel-card img {
+  max-height: 60%;
+  max-width: 56%;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45));
 }
-.zoom-stage--1 { animation-delay: 0s; }
-.zoom-stage--2 { animation-delay: 3s; }
-.zoom-stage--3 { animation-delay: 6s; }
-.zoom-stage--4 { animation-delay: 9s; }
-@keyframes zoom-stage-cycle {
-  0% { opacity: 0; transform: scale(0.8); }
-  6% { opacity: 1; transform: scale(1); }
-  20% { opacity: 1; transform: scale(1.06); }
-  25% { opacity: 0; transform: scale(1.09); }
-  100% { opacity: 0; transform: scale(1.09); }
+.carousel-card--1 { animation-delay: 0s; }
+.carousel-card--2 { animation-delay: -2.4s; }
+.carousel-card--3 { animation-delay: -4.8s; }
+.carousel-card--4 { animation-delay: -7.2s; }
+@keyframes carousel-fly {
+  0% { opacity: 0; transform: translateZ(-900px) translateY(4%) rotateY(28deg) rotateX(6deg) scale(0.35); }
+  12% { opacity: 1; }
+  38%, 50% { opacity: 1; transform: translateZ(0) translateY(0) rotateY(0deg) rotateX(0deg) scale(1); }
+  75% { opacity: 0; transform: translateZ(420px) translateY(-6%) rotateY(-18deg) scale(1.45); }
+  100% { opacity: 0; transform: translateZ(420px) translateY(-6%) rotateY(-18deg) scale(1.45); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .zoom-stage { animation: none !important; opacity: 0; transform: none; }
-  .zoom-stage--1 { opacity: 1; }
+  .carousel-card { animation: none !important; opacity: 0; }
+  .carousel-card--1 { opacity: 1; }
 }
 
-.zoom-stage__label {
+.carousel-card__label {
   position: absolute; left: 1.25rem; bottom: 1.25rem; z-index: 1;
   background: var(--canopy-2); border: 1px solid var(--hairline-dark);
   padding: 0.5rem 0.8rem;
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--paper); display: flex; align-items: center; gap: 0.6em;
 }
-.zoom-stage__num { color: var(--lime); }
+.carousel-card__num { color: var(--lime); }
 
 .chain-visual { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 1.25rem; margin-bottom: 3rem; align-items: stretch; }
-.chain-visual .zoom-sequence { aspect-ratio: auto; height: 100%; min-height: 260px; }
+.chain-visual .product-carousel { aspect-ratio: auto; height: 100%; min-height: 260px; }
 @media (max-width: 760px) { .chain-visual { grid-template-columns: 1fr; } }
 
 .flow-badge {
