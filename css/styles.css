@@ -335,9 +335,11 @@ button { font-family: inherit; cursor: pointer; }
    tracking app — simply crossfade in place, no motion, no panel/box
    behind them: the stage has no background or border of its own, so
    the images read as floating directly on the hero's own canopy
-   background. One continuous 9.6s cycle, staggered 2.4s apart (via
-   negative animation-delay, so the sequence is already mid-flow on
-   load) so only one card is ever visible at a time.
+   background. One continuous 9.6s cycle, staggered 2.4s apart via
+   positive animation-delay, so playback always starts clean with card
+   1 (bottle) fading in first, in DOM order — a negative delay was
+   tried earlier but that starts later cards already mid-cycle, so a
+   card other than the bottle was the first thing visible on load.
    Reduced-motion gets a static single-card fallback, since the generic
    global override alone would leave every card blank mid-fade. */
 .product-carousel {
@@ -367,9 +369,9 @@ button { font-family: inherit; cursor: pointer; }
   filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45));
 }
 .carousel-card--1 { animation-delay: 0s; }
-.carousel-card--2 { animation-delay: -2.4s; }
-.carousel-card--3 { animation-delay: -4.8s; }
-.carousel-card--4 { animation-delay: -7.2s; }
+.carousel-card--2 { animation-delay: 2.4s; }
+.carousel-card--3 { animation-delay: 4.8s; }
+.carousel-card--4 { animation-delay: 7.2s; }
 @keyframes carousel-fade {
   0%, 100% { opacity: 0; }
   8% { opacity: 1; }
