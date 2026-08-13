@@ -273,7 +273,7 @@ button { font-family: inherit; cursor: pointer; }
    pins can't safely float over the left/center at any vertical %. */
 .pin--1 { top: 10%; right: 7%; }
 .pin--2 { top: 40%; right: 9%; }
-.pin--3 { bottom: 8%; right: 7%; }
+.pin--3 { bottom: 14%; right: 7%; }
 @media (max-width: 860px) {
   /* Single-column layout: text spans full width, so only the strip
      above the eyebrow is reliably clear. */
@@ -288,8 +288,12 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ---------- Marquee ticker (motion signature) ---------- */
 .marquee {
+  /* .hero is display:flex to bottom-anchor .hero__content; without this,
+     the marquee becomes a second flex item sitting beside the text
+     instead of a full-width strip at the hero's bottom edge. */
+  position: absolute;
+  left: 0; right: 0; bottom: 0; z-index: 1;
   border-top: 1px solid var(--hairline-dark);
-  margin-top: clamp(2.5rem, 6vw, 4rem);
   overflow: hidden;
   white-space: nowrap;
   background: var(--canopy-2);
