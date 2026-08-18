@@ -329,6 +329,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .tag--placeholder .tag__plus { font-family: var(--mono); font-size: 1.4rem; color: var(--brass-ink); }
 .tag--placeholder .tag__label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.section--dark .tag--placeholder { color: var(--paper-soft); }
+.section--dark .tag--placeholder .tag__plus { color: var(--brass); }
 
 /* ---------- Product carousel (hero visual) ----------
    Four real product cutouts — bottle, recycled pellets, remade polo,
