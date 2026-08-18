@@ -529,6 +529,17 @@ button { font-family: inherit; cursor: pointer; }
 }
 .photo-frame__tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--fern, #3f8a45); flex-shrink: 0; }
 
+/* Three-panel editorial strip: each column uses the source photo's own
+   aspect ratio, so object-fit:cover never has to crop anything. */
+.triptych { position: relative; }
+.triptych__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  background: var(--hairline-dark); border: 1px solid var(--hairline-dark);
+  overflow: hidden;
+}
+.triptych__grid img { width: 100%; height: 100%; aspect-ratio: 700 / 1259; object-fit: cover; display: block; }
+@media (max-width: 640px) { .triptych__grid { grid-template-columns: 1fr; } }
+
 .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 .gallery__item { position: relative; overflow: hidden; border: 1px solid var(--hairline); aspect-ratio: 16 / 9; }
 .section--dark .gallery__item { border-color: var(--hairline-dark); }
