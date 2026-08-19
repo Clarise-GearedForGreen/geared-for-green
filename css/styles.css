@@ -227,10 +227,13 @@ button { font-family: inherit; cursor: pointer; }
   pointer-events: none;
 }
 .page-hero::before {
+  /* Kept light -- .page-hero__panel (a solid card) is what guarantees
+     text legibility now, so this is just a soft vignette to help the
+     photo blend into the section below, not a functional dark tint. */
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(16, 35, 26, 0.6) 0%, rgba(16, 35, 26, 0.45) 40%, rgba(16, 35, 26, 0.55) 70%, rgba(16, 35, 26, 0.88) 100%);
+  background: linear-gradient(180deg, rgba(16, 35, 26, 0.1) 0%, rgba(16, 35, 26, 0.05) 40%, rgba(16, 35, 26, 0.1) 70%, rgba(16, 35, 26, 0.32) 100%);
   z-index: 0;
 }
 .hero > .container, .hero > .marquee, .page-hero > .container { position: relative; z-index: 1; }
