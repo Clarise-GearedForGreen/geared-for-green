@@ -689,13 +689,13 @@ button { font-family: inherit; cursor: pointer; }
   grid-template-columns: 52px 1fr;
   gap: 1.5rem;
   align-items: start;
-  padding: 1.6rem 0 1.6rem 2.25rem;
+  padding: 1.6rem 0 1.6rem 3rem;
   border-bottom: 1px solid var(--hairline);
   transition: padding-left 0.3s var(--ease);
   overflow: hidden;
 }
 .section--dark .feature-row { border-color: var(--hairline-dark); }
-.feature-row:hover { padding-left: 2.75rem; }
+.feature-row:hover { padding-left: 3.5rem; }
 
 /* Accent bar grows in on reveal (one-shot animation, keyed off
    .is-visible), brightens instantly on hover (plain transition) --
