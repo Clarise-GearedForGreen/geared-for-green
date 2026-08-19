@@ -230,7 +230,7 @@ button { font-family: inherit; cursor: pointer; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(16, 35, 26, 0.1) 0%, rgba(16, 35, 26, 0.2) 55%, rgba(16, 35, 26, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(16, 35, 26, 0.6) 0%, rgba(16, 35, 26, 0.45) 40%, rgba(16, 35, 26, 0.55) 70%, rgba(16, 35, 26, 0.88) 100%);
   z-index: 0;
 }
 .hero > .container, .hero > .marquee, .page-hero > .container { position: relative; z-index: 1; }
@@ -627,10 +627,11 @@ button { font-family: inherit; cursor: pointer; }
   padding: clamp(3rem, 8vw, 5rem) 0 clamp(2.5rem, 6vw, 4rem);
   overflow: hidden;
 }
-.page-hero__crumb { font-family: var(--mono); font-size: 0.74rem; color: var(--paper-faint); letter-spacing: 0.04em; margin-bottom: 1.25rem; }
+.page-hero__crumb { font-family: var(--mono); font-size: 0.74rem; color: var(--paper-faint); letter-spacing: 0.04em; margin-bottom: 1.25rem; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8); }
 .page-hero__crumb a { color: var(--lime); }
-.page-hero h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); font-weight: 500; }
-.page-hero__lede { margin-top: 1.25rem; max-width: 58ch; font-size: 1.02rem; color: var(--paper-soft); }
+.page-hero h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); font-weight: 500; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.65); }
+.page-hero__lede { margin-top: 1.25rem; max-width: 58ch; font-size: 1.02rem; color: var(--paper-soft); text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7); }
+.page-hero .eyebrow { text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8); }
 .page-hero .btn--ghost-dark { border-color: var(--hairline-dark); color: var(--paper); }
 .page-hero .btn--ghost-dark:hover { background: var(--paper); color: var(--canopy); }
 
