@@ -627,6 +627,21 @@ button { font-family: inherit; cursor: pointer; }
   padding: clamp(3rem, 8vw, 5rem) 0 clamp(2.5rem, 6vw, 4rem);
   overflow: hidden;
 }
+/* Solid panel behind the hero text -- a stronger ::before gradient
+   alone wasn't enough for bright/busy photos (e.g. a white trade-show
+   floor), so this guarantees legibility regardless of what's behind
+   it, independent of any one photo's brightness. */
+.page-hero__panel {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  background: rgba(16, 35, 26, 0.86);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--hairline-dark);
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  max-width: 720px;
+}
 .page-hero__crumb { font-family: var(--mono); font-size: 0.74rem; color: var(--paper-faint); letter-spacing: 0.04em; margin-bottom: 1.25rem; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8); }
 .page-hero__crumb a { color: var(--lime); }
 .page-hero h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); font-weight: 500; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.65); }
