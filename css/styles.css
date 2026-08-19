@@ -480,56 +480,75 @@ button { font-family: inherit; cursor: pointer; }
 .chain__step p { margin-top: 0.5rem; font-size: 0.86rem; color: var(--ink-soft); }
 .section--dark .chain__step p { color: var(--paper-soft); }
 
-/* Chain assembles in sequence on scroll: connector line draws left-to-right
-   while each node pops in and its text follows, staggered so it reads as
-   one step handing off to the next rather than everything landing at once. */
-.chain__row.reveal::before { transform: scaleX(0); transform-origin: left; }
-.chain__row.reveal.is-visible::before { animation: chain-line-draw 1.5s var(--ease) forwards; }
-
-.chain__step.reveal:nth-child(1) { --step-delay: 0s; }
-.chain__step.reveal:nth-child(2) { --step-delay: 0.22s; }
-.chain__step.reveal:nth-child(3) { --step-delay: 0.44s; }
-.chain__step.reveal:nth-child(4) { --step-delay: 0.66s; }
-.chain__step.reveal:nth-child(5) { --step-delay: 0.88s; }
-
-.chain__step.reveal .chain__node { opacity: 0; transform: scale(0.35); }
-.chain__step.reveal.is-visible .chain__node {
-  animation: chain-node-in 0.5s var(--ease) forwards;
-  animation-delay: var(--step-delay, 0s);
-}
-.chain__step.reveal h3, .chain__step.reveal p { opacity: 0; }
-.chain__step.reveal.is-visible h3 {
-  animation: chain-text-in 0.45s var(--ease) forwards;
-  animation-delay: calc(var(--step-delay, 0s) + 0.16s);
-}
-.chain__step.reveal.is-visible p {
-  animation: chain-text-in 0.45s var(--ease) forwards;
-  animation-delay: calc(var(--step-delay, 0s) + 0.26s);
-}
-
-@keyframes chain-line-draw { to { transform: scaleX(1); } }
-@keyframes chain-node-in { from { opacity: 0; transform: scale(0.35); } 60% { transform: scale(1.15); } to { opacity: 1; transform: scale(1); } }
-@keyframes chain-text-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-@media (prefers-reduced-motion: reduce) {
-  .chain__row.reveal::before, .chain__step.reveal .chain__node, .chain__step.reveal h3, .chain__step.reveal p {
-    animation: none !important;
-  }
-  .chain__row.reveal::before { transform: none; }
-  .chain__step.reveal .chain__node, .chain__step.reveal h3, .chain__step.reveal p { opacity: 1; transform: none; }
-}
-
 @media (max-width: 860px) {
   .chain__row { grid-template-columns: 1fr; gap: 2rem; }
   .chain__row::before { top: 0; bottom: 0; left: 22px; right: auto; width: 1px; height: auto; background: repeating-linear-gradient(180deg, var(--hairline) 0 8px, transparent 8px 14px); }
   .section--dark .chain__row::before { background: repeating-linear-gradient(180deg, var(--hairline-dark) 0 8px, transparent 8px 14px); }
   .chain__step { padding: 0; padding-left: 3.6rem; position: relative; }
   .chain__node { position: absolute; left: 0; top: 0; }
-  .chain__row.reveal::before { transform: scaleY(0); transform-origin: top; }
-  .chain__row.reveal.is-visible::before { animation-name: chain-line-draw-v; }
 }
 
-@keyframes chain-line-draw-v { to { transform: scaleY(1); } }
+/* Vertical process timeline: big ghost-outline numerals instead of small
+   node chips, since these steps carry a full paragraph each -- a 5-column
+   horizontal layout crushed that much copy into narrow columns. */
+.process-timeline { margin-top: 2.5rem; }
+.process-timeline__step {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 2rem;
+  align-items: start;
+  padding: 2.25rem 0;
+  border-top: 1px solid var(--hairline-dark);
+}
+.process-timeline__step:last-child { border-bottom: 1px solid var(--hairline-dark); }
+
+.process-timeline__num {
+  font-family: var(--display);
+  font-size: 3.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--lime);
+}
+@supports not (-webkit-text-stroke: 1px black) {
+  .process-timeline__num { color: var(--lime); opacity: 0.5; }
+}
+
+.process-timeline__body h3 { font-family: var(--display); font-size: 1.2rem; font-weight: 600; color: var(--paper); }
+.process-timeline__body p { margin-top: 0.6rem; font-size: 0.95rem; color: var(--paper-soft); max-width: 62ch; }
+
+.process-timeline__step.reveal:nth-child(1) { --step-delay: 0s; }
+.process-timeline__step.reveal:nth-child(2) { --step-delay: 0.14s; }
+.process-timeline__step.reveal:nth-child(3) { --step-delay: 0.28s; }
+.process-timeline__step.reveal:nth-child(4) { --step-delay: 0.42s; }
+.process-timeline__step.reveal:nth-child(5) { --step-delay: 0.56s; }
+
+.process-timeline__step.reveal .process-timeline__num { opacity: 0; transform: translateX(-14px); }
+.process-timeline__step.reveal .process-timeline__body { opacity: 0; transform: translateY(10px); }
+.process-timeline__step.reveal.is-visible .process-timeline__num {
+  animation: pt-num-in 0.5s var(--ease) forwards;
+  animation-delay: var(--step-delay, 0s);
+}
+.process-timeline__step.reveal.is-visible .process-timeline__body {
+  animation: pt-body-in 0.5s var(--ease) forwards;
+  animation-delay: calc(var(--step-delay, 0s) + 0.12s);
+}
+@keyframes pt-num-in { to { opacity: 1; transform: translateX(0); } }
+@keyframes pt-body-in { to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .process-timeline__step.reveal .process-timeline__num,
+  .process-timeline__step.reveal .process-timeline__body {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .process-timeline__step { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.75rem 0; }
+  .process-timeline__num { font-size: 2.2rem; }
+}
 
 /* ---------- Numbered list (Alethia-style technical list) ---------- */
 .numlist { border-top: 1px solid var(--hairline); }
