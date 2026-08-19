@@ -753,7 +753,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .feature-row__body {
   display: grid;
-  grid-template-columns: minmax(180px, 280px) 1fr;
+  grid-template-columns: 260px 1fr;
   gap: 0.5rem 3rem;
   align-items: center;
 }
