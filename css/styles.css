@@ -480,13 +480,56 @@ button { font-family: inherit; cursor: pointer; }
 .chain__step p { margin-top: 0.5rem; font-size: 0.86rem; color: var(--ink-soft); }
 .section--dark .chain__step p { color: var(--paper-soft); }
 
+/* Chain assembles in sequence on scroll: connector line draws left-to-right
+   while each node pops in and its text follows, staggered so it reads as
+   one step handing off to the next rather than everything landing at once. */
+.chain__row.reveal::before { transform: scaleX(0); transform-origin: left; }
+.chain__row.reveal.is-visible::before { animation: chain-line-draw 1.5s var(--ease) forwards; }
+
+.chain__step.reveal:nth-child(1) { --step-delay: 0s; }
+.chain__step.reveal:nth-child(2) { --step-delay: 0.22s; }
+.chain__step.reveal:nth-child(3) { --step-delay: 0.44s; }
+.chain__step.reveal:nth-child(4) { --step-delay: 0.66s; }
+.chain__step.reveal:nth-child(5) { --step-delay: 0.88s; }
+
+.chain__step.reveal .chain__node { opacity: 0; transform: scale(0.35); }
+.chain__step.reveal.is-visible .chain__node {
+  animation: chain-node-in 0.5s var(--ease) forwards;
+  animation-delay: var(--step-delay, 0s);
+}
+.chain__step.reveal h3, .chain__step.reveal p { opacity: 0; }
+.chain__step.reveal.is-visible h3 {
+  animation: chain-text-in 0.45s var(--ease) forwards;
+  animation-delay: calc(var(--step-delay, 0s) + 0.16s);
+}
+.chain__step.reveal.is-visible p {
+  animation: chain-text-in 0.45s var(--ease) forwards;
+  animation-delay: calc(var(--step-delay, 0s) + 0.26s);
+}
+
+@keyframes chain-line-draw { to { transform: scaleX(1); } }
+@keyframes chain-node-in { from { opacity: 0; transform: scale(0.35); } 60% { transform: scale(1.15); } to { opacity: 1; transform: scale(1); } }
+@keyframes chain-text-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .chain__row.reveal::before, .chain__step.reveal .chain__node, .chain__step.reveal h3, .chain__step.reveal p {
+    animation: none !important;
+  }
+  .chain__row.reveal::before { transform: none; }
+  .chain__step.reveal .chain__node, .chain__step.reveal h3, .chain__step.reveal p { opacity: 1; transform: none; }
+}
+
 @media (max-width: 860px) {
   .chain__row { grid-template-columns: 1fr; gap: 2rem; }
   .chain__row::before { top: 0; bottom: 0; left: 22px; right: auto; width: 1px; height: auto; background: repeating-linear-gradient(180deg, var(--hairline) 0 8px, transparent 8px 14px); }
   .section--dark .chain__row::before { background: repeating-linear-gradient(180deg, var(--hairline-dark) 0 8px, transparent 8px 14px); }
   .chain__step { padding: 0; padding-left: 3.6rem; position: relative; }
   .chain__node { position: absolute; left: 0; top: 0; }
+  .chain__row.reveal::before { transform: scaleY(0); transform-origin: top; }
+  .chain__row.reveal.is-visible::before { animation-name: chain-line-draw-v; }
 }
+
+@keyframes chain-line-draw-v { to { transform: scaleY(1); } }
 
 /* ---------- Numbered list (Alethia-style technical list) ---------- */
 .numlist { border-top: 1px solid var(--hairline); }
