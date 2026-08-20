@@ -36,4 +36,23 @@ document.addEventListener("DOMContentLoaded", () => {
       revealEls.forEach((el) => el.classList.add("is-visible"));
     }
   }
+
+  // Like .reveal, but toggles is-visible on every crossing instead of
+  // unobserving after the first -- used where an exit animation matters.
+  const toggleEls = document.querySelectorAll(".reveal-toggle");
+  if (toggleEls.length) {
+    if ("IntersectionObserver" in window) {
+      const toggleObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle("is-visible", entry.isIntersecting);
+          });
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      );
+      toggleEls.forEach((el) => toggleObserver.observe(el));
+    } else {
+      toggleEls.forEach((el) => el.classList.add("is-visible"));
+    }
+  }
 });
