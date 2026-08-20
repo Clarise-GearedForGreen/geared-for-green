@@ -797,83 +797,85 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 700px) { .gallery { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .gallery__item img { transition: none; } }
 
-/* ---------- Audience lists: photo + title header, tag-pill list below.
-   Everything sits flat on the page (flex-wrap, no carousel) so the full
-   list reads at a glance instead of needing to scroll through it. ---------- */
-.audience-lists {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-.audience-list__photo {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
+/* ---------- Audience panel: one wide banner photo, then full-width
+   label + tag-pill rows underneath. Rows (not side-by-side columns)
+   so a short list (Events, 5 items) and a long one (Venues, 11 items)
+   don't end up as two badly mismatched-height boxes. ---------- */
+.audience-panel {
   border: 1px solid var(--hairline);
+  margin-bottom: 3rem;
+  overflow: hidden;
 }
-.audience-list__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.audience-list__photo::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(16, 35, 26, 0.75) 0%, rgba(16, 35, 26, 0.05) 55%);
+.audience-panel__photo { position: relative; aspect-ratio: 21 / 6; overflow: hidden; }
+.audience-panel__photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  opacity: 0; transform: scale(1.1);
 }
-.audience-list__title {
-  position: absolute; left: 1.25rem; bottom: 1rem;
-  font-family: var(--display); font-size: 1.7rem; font-weight: 700;
-  color: var(--paper);
+.audience-panel.reveal.is-visible .audience-panel__photo img {
+  animation: audience-photo-in 0.9s var(--ease) forwards;
 }
+@keyframes audience-photo-in { to { opacity: 1; transform: scale(1); } }
 
-.audience-list__tags {
-  list-style: none;
-  display: flex; flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: 1.1rem;
+.audience-panel__rows { background: var(--paper); }
+.audience-panel__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1.5rem clamp(1.25rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--hairline);
 }
-.audience-list__tags li {
+.audience-panel__row:last-child { border-bottom: none; }
+.audience-panel__label {
+  flex: 0 0 150px;
+  display: flex; align-items: center; gap: 0.6rem;
+  padding-top: 0.35rem;
+  font-family: var(--mono); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--lime-ink);
+}
+.audience-panel__label svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+.audience-panel__tags { flex: 1; list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem; min-width: 0; }
+.audience-panel__tags li {
   font-family: var(--mono); font-size: 0.82rem;
   padding: 0.5rem 0.95rem;
   border: 1px solid var(--hairline-dark);
   border-radius: 999px;
   color: var(--ink-soft);
-  background: var(--paper);
+  background: var(--bone);
   transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease);
   opacity: 0;
   transform: scale(0.85);
 }
-.audience-list__tags li:hover {
+.audience-panel__tags li:hover {
   background: var(--lime);
   border-color: var(--lime);
   color: var(--canopy);
   transform: translateY(-2px);
 }
-.audience-list.reveal.is-visible .audience-list__tags li {
+.audience-panel.reveal.is-visible .audience-panel__tags li {
   animation: audience-tag-in 0.4s var(--ease) forwards;
 }
-.audience-list__tags li:nth-child(1) { animation-delay: 0.05s; }
-.audience-list__tags li:nth-child(2) { animation-delay: 0.1s; }
-.audience-list__tags li:nth-child(3) { animation-delay: 0.15s; }
-.audience-list__tags li:nth-child(4) { animation-delay: 0.2s; }
-.audience-list__tags li:nth-child(5) { animation-delay: 0.25s; }
-.audience-list__tags li:nth-child(6) { animation-delay: 0.3s; }
-.audience-list__tags li:nth-child(7) { animation-delay: 0.35s; }
-.audience-list__tags li:nth-child(8) { animation-delay: 0.4s; }
-.audience-list__tags li:nth-child(9) { animation-delay: 0.45s; }
-.audience-list__tags li:nth-child(10) { animation-delay: 0.5s; }
-.audience-list__tags li:nth-child(11) { animation-delay: 0.55s; }
+.audience-panel__row:nth-child(2) .audience-panel__tags li { animation-delay: 0.1s; }
+.audience-panel__tags li:nth-child(1) { animation-delay: calc(var(--row-base, 0s) + 0.05s); }
+.audience-panel__tags li:nth-child(2) { animation-delay: calc(var(--row-base, 0s) + 0.1s); }
+.audience-panel__tags li:nth-child(3) { animation-delay: calc(var(--row-base, 0s) + 0.15s); }
+.audience-panel__tags li:nth-child(4) { animation-delay: calc(var(--row-base, 0s) + 0.2s); }
+.audience-panel__tags li:nth-child(5) { animation-delay: calc(var(--row-base, 0s) + 0.25s); }
+.audience-panel__tags li:nth-child(6) { animation-delay: calc(var(--row-base, 0s) + 0.3s); }
+.audience-panel__tags li:nth-child(7) { animation-delay: calc(var(--row-base, 0s) + 0.35s); }
+.audience-panel__tags li:nth-child(8) { animation-delay: calc(var(--row-base, 0s) + 0.4s); }
+.audience-panel__tags li:nth-child(9) { animation-delay: calc(var(--row-base, 0s) + 0.45s); }
+.audience-panel__tags li:nth-child(10) { animation-delay: calc(var(--row-base, 0s) + 0.5s); }
+.audience-panel__tags li:nth-child(11) { animation-delay: calc(var(--row-base, 0s) + 0.55s); }
+.audience-panel__row:nth-child(2) { --row-base: 0.25s; }
 @keyframes audience-tag-in { to { opacity: 1; transform: scale(1); } }
 
-.audience-list__photo img { opacity: 0; transform: scale(1.12); transition: none; }
-.audience-list.reveal.is-visible .audience-list__photo img {
-  animation: audience-photo-in 0.8s var(--ease) forwards;
-}
-@keyframes audience-photo-in { to { opacity: 1; transform: scale(1); } }
-
 @media (max-width: 700px) {
-  .audience-lists { grid-template-columns: 1fr; gap: 2.5rem; }
+  .audience-panel__row { flex-direction: column; gap: 0.75rem; }
+  .audience-panel__label { flex-basis: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .audience-list__tags li, .audience-list__photo img { animation: none !important; opacity: 1; transform: none; }
+  .audience-panel__tags li, .audience-panel__photo img { animation: none !important; opacity: 1; transform: none; }
 }
 
 /* ---------- Brand cards — full-bleed image overlay ----------
