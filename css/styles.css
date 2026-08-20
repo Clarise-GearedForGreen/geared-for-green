@@ -612,7 +612,6 @@ button { font-family: inherit; cursor: pointer; }
 .proof-grid .reveal:nth-child(4) { --stagger: 0.24s; animation-delay: 0.24s; }
 .proof-grid .reveal:nth-child(5) { --stagger: 0.32s; animation-delay: 0.32s; }
 .proof-grid .reveal:nth-child(6) { --stagger: 0.4s; animation-delay: 0.4s; }
-.proof-grid .reveal:nth-child(7) { --stagger: 0.48s; animation-delay: 0.48s; }
 @keyframes proof-card-in { to { opacity: 1; transform: translateY(0); } }
 @keyframes proof-img-in { to { opacity: 1; transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) {
