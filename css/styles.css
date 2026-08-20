@@ -488,6 +488,103 @@ button { font-family: inherit; cursor: pointer; }
   .chain__node { position: absolute; left: 0; top: 0; }
 }
 
+/* Homepage Chain of Custody flow: icon-badge steps linked by a connector
+   line that draws itself in on scroll, each icon/number/text staggered
+   in sequence -- a livelier alternative to the plain .chain used
+   elsewhere (campus.html keeps that one unchanged). */
+.custody-flow {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+.custody-flow::before {
+  content: "";
+  position: absolute; top: 26px; left: 6%; right: 6%; height: 2px;
+  background: linear-gradient(90deg, var(--lime-dim), var(--lime));
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.custody-flow.is-visible::before {
+  animation: cf-line-draw 1.6s var(--ease) forwards;
+  animation-delay: 0.1s;
+}
+
+.custody-flow__step { position: relative; }
+.custody-flow__icon {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--lime);
+  color: var(--canopy);
+  border-radius: 50%;
+  position: relative; z-index: 1;
+  opacity: 0;
+  transform: scale(0.4) rotate(-20deg);
+}
+.custody-flow.is-visible .custody-flow__icon {
+  animation: cf-icon-in 0.55s var(--ease) forwards;
+  animation-delay: calc(var(--cf-delay, 0s) + 0.15s);
+}
+.custody-flow__icon svg { width: 24px; height: 24px; }
+
+.custody-flow__num {
+  display: block;
+  margin-top: 0.9rem;
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em;
+  color: var(--lime);
+}
+.custody-flow__step h3 { margin-top: 0.3rem; font-size: 1.05rem; font-weight: 600; font-family: var(--display); color: var(--paper); }
+.custody-flow__step p { margin-top: 0.5rem; font-size: 0.86rem; color: var(--paper-soft); }
+
+.custody-flow__step > .custody-flow__num,
+.custody-flow__step > h3,
+.custody-flow__step > p {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.custody-flow.is-visible .custody-flow__step > .custody-flow__num,
+.custody-flow.is-visible .custody-flow__step > h3,
+.custody-flow.is-visible .custody-flow__step > p {
+  animation: cf-text-in 0.5s var(--ease) forwards;
+  animation-delay: calc(var(--cf-delay, 0s) + 0.32s);
+}
+
+.custody-flow__step:nth-child(2) { --cf-delay: 0.16s; }
+.custody-flow__step:nth-child(3) { --cf-delay: 0.32s; }
+.custody-flow__step:nth-child(4) { --cf-delay: 0.48s; }
+.custody-flow__step:nth-child(5) { --cf-delay: 0.64s; }
+
+.custody-flow__step:hover .custody-flow__icon {
+  transform: scale(1.12) rotate(-6deg);
+  box-shadow: 0 0 0 8px rgba(196, 241, 126, 0.22);
+}
+.custody-flow__icon { transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); }
+
+@keyframes cf-line-draw { to { transform: scaleX(1); } }
+@keyframes cf-icon-in { to { opacity: 1; transform: scale(1) rotate(0deg); } }
+@keyframes cf-text-in { to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .custody-flow::before,
+  .custody-flow__icon,
+  .custody-flow__step > .custody-flow__num,
+  .custody-flow__step > h3,
+  .custody-flow__step > p {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .custody-flow { grid-template-columns: 1fr; gap: 2.25rem; }
+  .custody-flow::before { top: 0; bottom: 0; left: 26px; right: auto; width: 2px; height: auto; transform: scaleY(0); transform-origin: top; }
+  .custody-flow.is-visible::before { animation-name: cf-line-draw-v; }
+  .custody-flow__step { padding-left: 4.25rem; }
+  .custody-flow__icon { position: absolute; left: 0; top: 0; }
+}
+@keyframes cf-line-draw-v { to { transform: scaleY(1); } }
+
 /* Vertical process timeline: big ghost-outline numerals instead of small
    node chips, since these steps carry a full paragraph each -- a 5-column
    horizontal layout crushed that much copy into narrow columns. */
