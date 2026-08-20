@@ -210,7 +210,7 @@ button { font-family: inherit; cursor: pointer; }
    scattered over the carousel panel instead. */
 .hero {
   position: relative;
-  min-height: 65vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   background: var(--canopy);
