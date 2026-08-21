@@ -812,6 +812,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ---------- Photo components ---------- */
+#tag-promise .photo-frame { max-width: 70%; }
 .photo-frame {
   position: relative;
   border: 1px solid var(--hairline-dark);
