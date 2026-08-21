@@ -410,6 +410,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ---------- Mission strip (light, quiet) ---------- */
 .mission {
+  background: var(--bone-dim);
   border-top: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
   padding: clamp(3.5rem, 8vw, 6rem) 0;
