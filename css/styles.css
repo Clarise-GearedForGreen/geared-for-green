@@ -804,7 +804,7 @@ button { font-family: inherit; cursor: pointer; }
    don't end up as two badly mismatched-height boxes. ---------- */
 .audience-panel {
   border: 1px solid var(--hairline);
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   overflow: hidden;
 }
 .audience-panel__photo { position: relative; height: clamp(160px, 22vw, 240px); overflow: hidden; }
