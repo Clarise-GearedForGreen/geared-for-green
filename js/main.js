@@ -55,4 +55,27 @@ document.addEventListener("DOMContentLoaded", () => {
       toggleEls.forEach((el) => el.classList.add("is-visible"));
     }
   }
+
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = contactForm.name.value.trim();
+      const email = contactForm.email.value.trim();
+      const organization = contactForm.organization.value.trim();
+      const message = contactForm.message.value.trim();
+
+      const subject = `Event inquiry from ${name}`;
+      const bodyLines = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        organization ? `Organization: ${organization}` : null,
+        "",
+        message,
+      ].filter((line) => line !== null);
+
+      const mailto = `mailto:info@championsforgreen.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+      window.location.href = mailto;
+    });
+  }
 });
