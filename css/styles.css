@@ -940,6 +940,7 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--ink-soft);
 }
 .contact-form__field input,
+.contact-form__field select,
 .contact-form__field textarea {
   font-family: var(--body); font-size: 0.95rem;
   padding: 0.85rem 1rem;
@@ -950,7 +951,9 @@ button { font-family: inherit; cursor: pointer; }
   resize: vertical;
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
+.contact-form__field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2311140f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; background-size: 16px; padding-right: 2.5rem; }
 .contact-form__field input:focus,
+.contact-form__field select:focus,
 .contact-form__field textarea:focus {
   outline: none;
   border-color: var(--lime-dim);

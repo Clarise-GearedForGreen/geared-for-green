@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = contactForm.name.value.trim();
       const email = contactForm.email.value.trim();
       const organization = contactForm.organization.value.trim();
+      const type = contactForm.type.value.trim();
       const message = contactForm.message.value.trim();
 
       const subject = `Event inquiry from ${name}`;
@@ -70,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `Name: ${name}`,
         `Email: ${email}`,
         organization ? `Organization: ${organization}` : null,
+        type ? `Event/venue type: ${type}` : null,
         "",
         message,
       ].filter((line) => line !== null);

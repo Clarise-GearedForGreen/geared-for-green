@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=68" />
+<link rel="stylesheet" href="css/styles.css?v=69" />
 </head>
 <body>
 
@@ -219,6 +219,33 @@
       <label class="contact-form__field">
         <span>Organization</span>
         <input type="text" name="organization" />
+      </label>
+      <label class="contact-form__field">
+        <span>Event or venue type</span>
+        <select name="type" required>
+          <option value="" disabled selected>Select one&hellip;</option>
+          <optgroup label="Events">
+            <option>Festivals</option>
+            <option>Conferences</option>
+            <option>Tournaments</option>
+            <option>Trade shows</option>
+            <option>Boat shows</option>
+          </optgroup>
+          <optgroup label="Venues">
+            <option>Schools &amp; campuses</option>
+            <option>Offices</option>
+            <option>Stadiums</option>
+            <option>Convention centers</option>
+            <option>Golf clubs</option>
+            <option>Music venues</option>
+            <option>Arenas</option>
+            <option>Amphitheaters</option>
+            <option>Municipalities</option>
+            <option>Hotels</option>
+            <option>Resorts</option>
+          </optgroup>
+          <option>Other</option>
+        </select>
       </label>
       <label class="contact-form__field">
         <span>Message</span>
