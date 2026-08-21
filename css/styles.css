@@ -792,13 +792,13 @@ button { font-family: inherit; cursor: pointer; }
 
 .spec-card:hover { border-color: var(--lime-dim); transform: translateY(-3px); }
 .spec-card__icon {
-  width: 56px; height: 56px;
+  width: 76px; height: 76px;
   display: flex; align-items: center; justify-content: center;
   background: var(--lime);
   border-radius: 50%;
   margin-bottom: 1.1rem;
 }
-.spec-card__icon img { width: 28px; height: 28px; object-fit: contain; }
+.spec-card__icon img { width: 44px; height: 44px; object-fit: contain; }
 .spec-card h3 { font-family: var(--display); font-size: 1.05rem; font-weight: 600; color: var(--paper); }
 .spec-card p { margin-top: 0.5rem; font-size: 0.88rem; color: var(--paper-soft); }
 
