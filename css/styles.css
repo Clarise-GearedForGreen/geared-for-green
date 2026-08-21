@@ -833,7 +833,6 @@ button { font-family: inherit; cursor: pointer; }
    enter/exit reveal and a gentle hover zoom. ---------- */
 .how-made-frame {
   margin-top: 1rem;
-  border: 1px solid var(--hairline);
   border-radius: var(--radius);
   overflow: hidden;
   opacity: 0;
