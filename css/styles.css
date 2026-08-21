@@ -812,7 +812,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ---------- Photo components ---------- */
-#tag-promise .photo-frame { max-width: 68%; }
+#tag-promise .photo-frame { max-width: 68%; justify-self: end; }
 #tag-promise .split { gap: 0.25rem; align-items: center; }
 .photo-frame {
   position: relative;
