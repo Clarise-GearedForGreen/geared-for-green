@@ -760,6 +760,47 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 960px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } .grid-5 { grid-template-columns: repeat(2, 1fr); } .grid-3 { grid-template-columns: 1fr; } }
 @media (max-width: 520px) { .grid-4 { grid-template-columns: 1fr; } .grid-5 { grid-template-columns: 1fr; } }
 
+/* ---------- Spec grid: icon-badge feature cards with a staggered
+   enter animation and a quick, uniform exit (custom silhouette icons
+   converted from the client's supplied artwork). ---------- */
+.spec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+.spec-card {
+  padding: 1.75rem;
+  border: 1px solid var(--hairline-dark);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.03);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), border-color 0.3s var(--ease);
+  opacity: 0;
+}
+.spec-grid.reveal-toggle .spec-card { transform: translateY(20px); }
+.spec-grid.reveal-toggle.is-visible .spec-card {
+  animation: spec-card-in 0.55s var(--ease) forwards;
+  animation-delay: var(--spec-delay, 0s);
+}
+.spec-card:nth-child(1) { --spec-delay: 0s; }
+.spec-card:nth-child(2) { --spec-delay: 0.12s; }
+.spec-card:nth-child(3) { --spec-delay: 0.24s; }
+.spec-card:nth-child(4) { --spec-delay: 0.36s; }
+@keyframes spec-card-in { to { opacity: 1; transform: translateY(0); } }
+
+.spec-card:hover { border-color: var(--lime-dim); transform: translateY(-3px); }
+.spec-card__icon {
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--lime);
+  border-radius: 50%;
+  margin-bottom: 1.1rem;
+}
+.spec-card__icon img { width: 28px; height: 28px; object-fit: contain; }
+.spec-card h3 { font-family: var(--display); font-size: 1.05rem; font-weight: 600; color: var(--paper); }
+.spec-card p { margin-top: 0.5rem; font-size: 0.88rem; color: var(--paper-soft); }
+
+@media (max-width: 960px) { .spec-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .spec-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .spec-card { animation: none !important; opacity: 1; transform: none; }
+}
+
 /* ---------- Photo components ---------- */
 .photo-frame {
   position: relative;
