@@ -1037,6 +1037,15 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 560px) {
   .contact-form__row { grid-template-columns: 1fr; }
 }
+.contact-form__checks { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
+.contact-form__check {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  font-family: var(--body); font-size: 0.95rem; color: var(--char);
+  cursor: pointer;
+}
+.contact-form__check input {
+  width: 1.05rem; height: 1.05rem; accent-color: var(--lime-dim); cursor: pointer;
+}
 
 /* ---------- Footer ---------- */
 .footer { padding: 3.5rem 0 2.5rem; }

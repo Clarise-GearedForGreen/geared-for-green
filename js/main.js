@@ -80,4 +80,31 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = mailto;
     });
   }
+
+  const quoteForm = document.getElementById("quote-form");
+  if (quoteForm) {
+    quoteForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = quoteForm.name.value.trim();
+      const organization = quoteForm.organization.value.trim();
+      const qty = quoteForm.qty.value.trim();
+      const message = quoteForm.message.value.trim();
+      const products = Array.from(quoteForm.querySelectorAll('input[name="product"]:checked')).map(
+        (input) => input.value
+      );
+
+      const subject = `Apparel quote request from ${name}`;
+      const bodyLines = [
+        `Name: ${name}`,
+        organization ? `Organization: ${organization}` : null,
+        products.length ? `Product type: ${products.join(", ")}` : null,
+        qty ? `Quantity: ${qty}` : null,
+        "",
+        message,
+      ].filter((line) => line !== null);
+
+      const mailto = `mailto:mainedm@gearedforgreen.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+      window.location.href = mailto;
+    });
+  }
 });

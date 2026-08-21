@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=90" />
+<link rel="stylesheet" href="css/styles.css?v=91" />
 </head>
 <body>
 
@@ -116,6 +116,50 @@
       <div class="tag"><span class="tag__id">STEP 02</span><h3>Custom production</h3><p>Garments are manufactured from reclaimed, verified material and branded to spec.</p></div>
       <div class="tag"><span class="tag__id">STEP 03</span><h3>Wholesale delivery</h3><p>B2B pricing with a 75-unit minimum order per style.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="section" id="quote">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow">Request a quote</span>
+      <h2>Get pricing for your team</h2>
+      <p>Tell us what you need and we&rsquo;ll follow up with wholesale pricing.</p>
+    </div>
+    <form class="contact-form" id="quote-form">
+      <div class="contact-form__row">
+        <label class="contact-form__field">
+          <span>Name</span>
+          <input type="text" name="name" required />
+        </label>
+        <label class="contact-form__field">
+          <span>Organization</span>
+          <input type="text" name="organization" />
+        </label>
+      </div>
+      <div class="contact-form__field">
+        <span>Product type</span>
+        <div class="contact-form__checks">
+          <label class="contact-form__check"><input type="checkbox" name="product" value="Shirt" /> Shirt</label>
+          <label class="contact-form__check"><input type="checkbox" name="product" value="Polo" /> Polo</label>
+          <label class="contact-form__check"><input type="checkbox" name="product" value="Vest" /> Vest</label>
+          <label class="contact-form__check"><input type="checkbox" name="product" value="Quarter Zip" /> Quarter Zip</label>
+          <label class="contact-form__check"><input type="checkbox" name="product" value="5 Panel Cap" /> 5 Panel Cap</label>
+        </div>
+      </div>
+      <label class="contact-form__field">
+        <span>Quantity</span>
+        <input type="number" name="qty" min="1" placeholder="e.g. 75" />
+      </label>
+      <label class="contact-form__field">
+        <span>Message</span>
+        <textarea name="message" rows="5"></textarea>
+      </label>
+      <div class="contact-form__actions">
+        <button type="submit" class="btn btn--solid">Request quote</button>
+        <p class="contact-form__note">Opens your email client, addressed to <a href="mailto:mainedm@gearedforgreen.com">mainedm@gearedforgreen.com</a>.</p>
+      </div>
+    </form>
   </div>
 </section>
 
