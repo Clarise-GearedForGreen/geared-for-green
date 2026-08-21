@@ -1046,6 +1046,10 @@ button { font-family: inherit; cursor: pointer; }
 .contact-form__check input {
   width: 1.05rem; height: 1.05rem; accent-color: var(--lime-dim); cursor: pointer;
 }
+.contact-form__moq {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
 
 /* ---------- Footer ---------- */
 .footer { padding: 3.5rem 0 2.5rem; }
