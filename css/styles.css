@@ -1268,10 +1268,26 @@ button { font-family: inherit; cursor: pointer; }
 .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
 @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
 
-.check-list li { position: relative; padding-left: 1.6rem; margin-top: 0.9rem; color: var(--ink-soft); font-size: 0.94rem; }
-.section--dark .check-list li { color: var(--paper-soft); }
-.check-list li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px; background: var(--moss-ink); }
-.section--dark .check-list li::before { background: var(--lime); }
+.check-list { display: flex; flex-direction: column; }
+.check-list li {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--char); font-size: 0.96rem; line-height: 1.55;
+}
+.check-list li:first-child { padding-top: 0; }
+.check-list li:last-child { border-bottom: none; }
+.section--dark .check-list li { color: var(--paper); border-color: var(--hairline-dark); }
+.check-list__icon {
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px;
+  margin-top: 0.1rem;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--lime-ink);
+}
+.check-list__icon svg { width: 15px; height: 15px; }
 
 /* ---------- Feature list (icon + title + copy rows) ----------
    A grid of cards looked inconsistent with 5 items (one nth-child was
