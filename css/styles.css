@@ -374,6 +374,9 @@ button { font-family: inherit; cursor: pointer; }
 }
 .pillar-card h3 { margin-top: 0.4rem; font-size: 1.1rem; font-weight: 600; font-family: var(--display); }
 .pillar-card p { margin-top: 0.65rem; font-size: 0.88rem; color: var(--ink-soft); }
+.section--dark .pillar-card { background: var(--canopy-2); border-color: var(--hairline-dark); }
+.section--dark .pillar-card__id { color: var(--lime); }
+.section--dark .pillar-card p { color: var(--paper-soft); }
 @media (prefers-reduced-motion: reduce) {
   .pillar-card { animation: none !important; opacity: 1; transform: none; }
 }
