@@ -774,41 +774,31 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
 }
 
-/* ---------- Product accordion: native <details> expand/collapse
-   revealing per-product photos. ---------- */
-.product-accordion { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; max-width: 760px; }
-.product-accordion__item {
+/* ---------- Product gallery: tab-switched photo grid, so multiple
+   images per product type are visible at once without expanding. ---------- */
+.product-gallery { margin-top: 1rem; }
+.product-gallery__tabs { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
+.product-gallery__tab {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  padding: 0.7rem 1.1rem;
   border: 1px solid var(--hairline);
   border-radius: var(--radius);
-  overflow: hidden;
   background: var(--paper);
-}
-.product-accordion__item summary {
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  padding: 1.1rem 1.4rem;
+  font-family: var(--display); font-weight: 600; font-size: 0.92rem; color: var(--char);
   cursor: pointer;
-  font-family: var(--display); font-weight: 600; font-size: 1.05rem; color: var(--char);
-  list-style: none;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
 }
-.product-accordion__item summary::-webkit-details-marker { display: none; }
-.product-accordion__item summary::after {
-  content: "+";
-  font-family: var(--mono); font-size: 1.3rem; color: var(--ink-soft);
-  transition: transform 0.25s var(--ease);
-  flex-shrink: 0;
+.product-gallery__tab:hover { border-color: var(--lime-dim); }
+.product-gallery__tab.is-active { background: var(--lime); border-color: var(--lime); color: var(--lime-ink); }
+.product-gallery__moq {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase;
+  font-weight: 400; color: var(--ink-soft);
 }
-.product-accordion__item[open] summary::after { transform: rotate(45deg); }
-.product-accordion__moq {
-  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase;
-  font-weight: 400; color: var(--ink-soft); margin-left: 0.75em;
-}
-.product-accordion__gallery {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem;
-  padding: 0 1.4rem 1.4rem;
-}
-.product-accordion__gallery img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); display: block; }
-.product-accordion__gallery--empty { padding: 0 1.4rem 1.6rem; }
-.product-accordion__gallery--empty p { font-size: 0.9rem; color: var(--ink-soft); font-style: italic; }
+.product-gallery__tab.is-active .product-gallery__moq { color: var(--lime-ink); opacity: 0.75; }
+.product-gallery__panel { display: none; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.product-gallery__panel.is-active { display: grid; }
+.product-gallery__panel img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--hairline); display: block; }
+.product-gallery__empty { font-size: 0.9rem; color: var(--ink-soft); font-style: italic; }
 
 /* ---------- Spec grid: icon-badge feature cards with a staggered
    enter animation and a quick, uniform exit (custom silhouette icons

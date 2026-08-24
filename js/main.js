@@ -56,6 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const productTabs = document.querySelectorAll(".product-gallery__tab");
+  if (productTabs.length) {
+    productTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tab;
+        productTabs.forEach((t) => {
+          t.classList.toggle("is-active", t === tab);
+          t.setAttribute("aria-selected", String(t === tab));
+        });
+        document.querySelectorAll(".product-gallery__panel").forEach((panel) => {
+          panel.classList.toggle("is-active", panel.dataset.panel === target);
+        });
+      });
+    });
+  }
+
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
