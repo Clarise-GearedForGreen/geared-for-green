@@ -777,9 +777,11 @@ button { font-family: inherit; cursor: pointer; }
 /* ---------- Product gallery: a flat grid of every product photo,
    all visible at once, no interaction required. ---------- */
 .product-gallery {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
   margin-top: 1rem;
 }
+@media (max-width: 860px) { .product-gallery { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .product-gallery { grid-template-columns: 1fr; } }
 .product-gallery__item {
   margin: 0;
   border: 1px solid var(--hairline);
