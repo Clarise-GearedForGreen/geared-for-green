@@ -56,6 +56,80 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const lightbox = document.getElementById("product-lightbox");
+  const galleryItems = document.querySelectorAll(".product-gallery__item[data-product] img");
+  if (lightbox && galleryItems.length) {
+    const groups = {};
+    galleryItems.forEach((img) => {
+      const name = img.closest("[data-product]").dataset.product;
+      if (!groups[name]) groups[name] = [];
+      groups[name].push({ src: img.currentSrc || img.src, alt: img.alt });
+    });
+
+    const lightboxImg = lightbox.querySelector(".lightbox__img");
+    const titleEl = lightbox.querySelector(".lightbox__title");
+    const countEl = lightbox.querySelector(".lightbox__count");
+    const prevBtn = lightbox.querySelector(".lightbox__nav--prev");
+    const nextBtn = lightbox.querySelector(".lightbox__nav--next");
+    const closeBtn = lightbox.querySelector(".lightbox__close");
+
+    let activeGroup = null;
+    let activeIndex = 0;
+
+    const render = () => {
+      const photos = groups[activeGroup];
+      const photo = photos[activeIndex];
+      lightboxImg.src = photo.src;
+      lightboxImg.alt = photo.alt;
+      titleEl.textContent = activeGroup;
+      countEl.textContent = `${activeIndex + 1} / ${photos.length}`;
+      prevBtn.disabled = activeIndex === 0;
+      nextBtn.disabled = activeIndex === photos.length - 1;
+    };
+
+    const open = (name, index) => {
+      activeGroup = name;
+      activeIndex = index;
+      render();
+      lightbox.setAttribute("aria-hidden", "false");
+    };
+
+    const close = () => {
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImg.src = "";
+    };
+
+    galleryItems.forEach((img) => {
+      const item = img.closest("[data-product]");
+      const name = item.dataset.product;
+      const index = groups[name].findIndex((p) => p.src === (img.currentSrc || img.src));
+      img.closest(".product-gallery__media").addEventListener("click", () => open(name, index));
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (activeIndex > 0) {
+        activeIndex -= 1;
+        render();
+      }
+    });
+    nextBtn.addEventListener("click", () => {
+      if (activeIndex < groups[activeGroup].length - 1) {
+        activeIndex += 1;
+        render();
+      }
+    });
+    closeBtn.addEventListener("click", close);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.getAttribute("aria-hidden") === "true") return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft" && !prevBtn.disabled) prevBtn.click();
+      if (e.key === "ArrowRight" && !nextBtn.disabled) nextBtn.click();
+    });
+  }
+
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {

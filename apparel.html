@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=101" />
+<link rel="stylesheet" href="css/styles.css?v=102" />
 </head>
 <body>
 
@@ -113,24 +113,24 @@
       <p>Every style, all in one place.</p>
     </div>
     <div class="product-gallery">
-      <figure class="product-gallery__item">
-        <img src="images/apparel-golf-fullbody.jpg" alt="Man in a Champions for GREEN navy shirt walking across a golf course" loading="lazy" />
+      <figure class="product-gallery__item" data-product="Shirt">
+        <div class="product-gallery__media"><img src="images/apparel-golf-fullbody.jpg" alt="Man in a Champions for GREEN navy shirt walking across a golf course" loading="lazy" /></div>
         <figcaption>Shirt <span>MOQ 100</span></figcaption>
       </figure>
-      <figure class="product-gallery__item">
-        <img src="images/apparel-editorial-portrait.jpg" alt="Man in a Champions for GREEN grey polo, hand resting on a golf club" loading="lazy" />
+      <figure class="product-gallery__item" data-product="Polo">
+        <div class="product-gallery__media"><img src="images/apparel-editorial-portrait.jpg" alt="Man in a Champions for GREEN grey polo, hand resting on a golf club" loading="lazy" /></div>
         <figcaption>Polo <span>MOQ 100</span></figcaption>
       </figure>
-      <figure class="product-gallery__item">
-        <img src="images/apparel-editorial-putting.jpg" alt="Man in a Champions for GREEN grey polo putting on a golf green" loading="lazy" />
+      <figure class="product-gallery__item" data-product="Polo">
+        <div class="product-gallery__media"><img src="images/apparel-editorial-putting.jpg" alt="Man in a Champions for GREEN grey polo putting on a golf green" loading="lazy" /></div>
         <figcaption>Polo <span>MOQ 100</span></figcaption>
       </figure>
-      <figure class="product-gallery__item">
-        <img src="images/apparel-hemtag-detail.jpg" alt="Close-up of a Champions for GREEN hem tag showing a recycled-bottle icon and the number 12" loading="lazy" />
+      <figure class="product-gallery__item" data-product="Vest">
+        <div class="product-gallery__media"><img src="images/apparel-hemtag-detail.jpg" alt="Close-up of a Champions for GREEN hem tag showing a recycled-bottle icon and the number 12" loading="lazy" /></div>
         <figcaption>Vest <span>MOQ 100</span></figcaption>
       </figure>
-      <figure class="product-gallery__item">
-        <img src="images/hero-apparel-action.jpg" alt="Woman in a Champions for GREEN grey quarter-zip speaking in a meeting" loading="lazy" />
+      <figure class="product-gallery__item" data-product="Quarter Zip">
+        <div class="product-gallery__media"><img src="images/hero-apparel-action.jpg" alt="Woman in a Champions for GREEN grey quarter-zip speaking in a meeting" loading="lazy" /></div>
         <figcaption>Quarter Zip <span>MOQ 100</span></figcaption>
       </figure>
       <figure class="product-gallery__item product-gallery__item--empty">
@@ -140,6 +140,19 @@
     </div>
   </div>
 </section>
+
+<div class="lightbox" id="product-lightbox" aria-hidden="true">
+  <button class="lightbox__close" type="button" aria-label="Close">&times;</button>
+  <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous photo">&larr;</button>
+  <figure class="lightbox__frame">
+    <img class="lightbox__img" src="" alt="" />
+    <figcaption>
+      <span class="lightbox__title"></span>
+      <span class="lightbox__count"></span>
+    </figcaption>
+  </figure>
+  <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next photo">&rarr;</button>
+</div>
 
 <section class="section--dim section">
   <div class="container">
