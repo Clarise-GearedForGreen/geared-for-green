@@ -898,7 +898,8 @@ button { font-family: inherit; cursor: pointer; }
 
 /* Three-panel editorial strip: each column uses the source photo's own
    aspect ratio, so object-fit:cover never has to crop anything. */
-.triptych { position: relative; }
+.triptych { position: relative; max-width: 50%; margin-inline: auto; }
+@media (max-width: 640px) { .triptych { max-width: 100%; } }
 .triptych__grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
   background: var(--hairline-dark); border: 1px solid var(--hairline-dark);
