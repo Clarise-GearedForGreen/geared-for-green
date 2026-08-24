@@ -58,9 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const lightbox = document.getElementById("product-lightbox");
   const galleryItems = document.querySelectorAll(".product-gallery__item[data-product] img");
+  const allGroupImgs = document.querySelectorAll(
+    ".product-gallery__item[data-product] img, .product-gallery__extra[data-product] img"
+  );
   if (lightbox && galleryItems.length) {
     const groups = {};
-    galleryItems.forEach((img) => {
+    allGroupImgs.forEach((img) => {
       const name = img.closest("[data-product]").dataset.product;
       if (!groups[name]) groups[name] = [];
       groups[name].push({ src: img.currentSrc || img.src, alt: img.alt });
