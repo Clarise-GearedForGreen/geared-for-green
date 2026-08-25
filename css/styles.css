@@ -867,7 +867,7 @@ button { font-family: inherit; cursor: pointer; }
   transition: transform 0.25s var(--ease);
 }
 .product-gallery__media:hover::after { transform: scale(1.12); }
-.product-gallery__note { margin-top: 1.5rem; font-size: 0.9rem; color: var(--ink-soft); }
+.product-gallery__brochure { margin-top: 1.5rem; }
 
 /* ---------- Lightbox: click any product photo to view it larger,
    with prev/next cycling through that item's other photos. ---------- */
