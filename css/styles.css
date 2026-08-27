@@ -18,7 +18,6 @@
   --lime: #c4f17e;          /* bright verified accent */
   --lime-dim: #9fd158;
   --moss: #5c8a6a;          /* sage secondary — Campus & Community */
-  --moss-dim: #4a7358;      /* darker sage — hover state, mirrors --lime-dim */
   --brass: #c9a96e;         /* gold accent — Apparel + certifications */
   --brass-dim: #b3915a;
   /* "ink" variants: dark, WCAG-safe versions of the accent colors for use
@@ -1409,24 +1408,3 @@ button { font-family: inherit; cursor: pointer; }
   .feature-row__icon svg path, .feature-row__icon svg circle { stroke-dashoffset: 0; }
   .feature-row__body { opacity: 1; }
 }
-
-/* ---------- Campus & Community page theme ----------
-   Cream-dominant / sage-green-accent alternate to the site's default
-   dark-canopy / lime scheme, scoped to campus.html only via body.campus-page.
-   Reassigns --lime to the sage tokens already reserved for this brand
-   (see :root), so every existing lime-referencing rule (buttons, eyebrows,
-   nav mark, chain nodes, focus rings, etc.) picks up sage automatically. */
-body.campus-page {
-  --lime: var(--moss);
-  --lime-dim: var(--moss-dim);
-  --lime-ink: var(--moss-ink);
-}
-.page-hero--cream { color: var(--char); }
-.page-hero--cream .page-hero__panel { background: rgba(245, 244, 238, 0.92); border-color: var(--hairline); }
-.page-hero--cream .page-hero__crumb { color: var(--ink-faint); text-shadow: none; }
-.page-hero--cream .page-hero__crumb a { color: var(--moss-ink); }
-.page-hero--cream .eyebrow { color: var(--moss-ink); text-shadow: none; }
-.page-hero--cream h1 { text-shadow: none; }
-.page-hero--cream .page-hero__lede { color: var(--ink-soft); text-shadow: none; }
-.page-hero--cream .btn--ghost-dark { border-color: var(--char); color: var(--char); }
-.page-hero--cream .btn--ghost-dark:hover { background: var(--char); color: var(--paper); }
