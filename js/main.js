@@ -158,6 +158,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const campusForm = document.getElementById("campus-contact-form");
+  if (campusForm) {
+    campusForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = campusForm.name.value.trim();
+      const email = campusForm.email.value.trim();
+      const organization = campusForm.organization.value.trim();
+      const type = campusForm.type.value.trim();
+      const message = campusForm.message.value.trim();
+
+      const subject = `Campus & Community inquiry from ${name}`;
+      const bodyLines = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        organization ? `Organization: ${organization}` : null,
+        type ? `Campus/community type: ${type}` : null,
+        "",
+        message,
+      ].filter((line) => line !== null);
+
+      const mailto = `mailto:mainedm@gearedforgreen.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+      window.location.href = mailto;
+    });
+  }
+
   const quoteForm = document.getElementById("quote-form");
   if (quoteForm) {
     quoteForm.addEventListener("submit", (e) => {
