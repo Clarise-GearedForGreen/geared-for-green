@@ -994,7 +994,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 .photo-frame__tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--fern, #3f8a45); flex-shrink: 0; }
 
-.photo-frame-stack { display: flex; flex-direction: column; gap: 1.25rem; }
+.photo-frame-stack { display: flex; align-items: flex-start; gap: 1.25rem; }
+.photo-frame-stack .photo-frame { flex: 1; min-width: 0; }
+@media (max-width: 480px) {
+  .photo-frame-stack { flex-direction: column; }
+}
 
 /* ---------- How-it's-made diagram: large showcase image with its own
    enter/exit reveal and a gentle hover zoom. ---------- */
